@@ -225,7 +225,7 @@ class Training extends CI_Controller {
         $config['allowed_types'] = 'xlsx|xls';
         $config['file_name'] = 'doc' . time();
         $this->load->library('upload', $config);
-        if ($this->upload->do_upload('importexcel')) {
+        if ($this->upload->do_upload('importexel')) {
             $file = $this->upload->data();
             $reader = ReaderEntityFactory::createXLSXReader();
 
@@ -251,7 +251,7 @@ class Training extends CI_Controller {
                             'kelas' => $row->getCellAtIndex(14),
 
                         );
-                        $this->modeltraining->import_data($data);
+                        $this->training->import_data($data);
                     }
                     $numRow++;
                 }
