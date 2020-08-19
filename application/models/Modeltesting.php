@@ -79,7 +79,7 @@ class Modeltesting extends CI_Model
             'minat' => $minat,
             'nilai_iq' => $nilai_iq,
             'kelas' => $kelas,
-            'prediksi' => $prediksi
+            'predikis' => $predikis
         ];
         $this->db->insert('testing', $simpan);
     }
@@ -115,17 +115,6 @@ class Modeltesting extends CI_Model
     public function hapus($nis)
     {
         return $this->db->delete('testing', ['nis' => $nis]);
-    }
-
-    public function get(){
-        return $this->db->get($this->table);
-    }
-
-    public function simpan_tranformasi($data){
-        $jumlah = count($data);
-        if ($jumlah > 0) {
-            $this->db->replace('normalisasi', $data);
-        }
     }
     
 }
