@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 .DS_Store
 
 application/cache/*
@@ -29,3 +30,7 @@ user_guide_src/cilexer/pycilexer.egg-info/*
 *.sublime-project
 /tests/tests/
 /tests/results/
+=======
+vendor/*
+*.lock
+>>>>>>> f334cdac9698a29c7a1ebf67177696add0460041
