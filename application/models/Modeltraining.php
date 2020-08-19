@@ -122,4 +122,15 @@ class Modeltraining extends CI_Model
             $this->db->replace('training', $data);
         }
     }
+
+    public function get(){
+        return $this->db->get($this->table);
+    }
+
+    public function simpan_tranformasi($data){
+        $jumlah = count($data);
+        if ($jumlah > 0) {
+            $this->db->replace('normalisasi', $data);
+        }
+    }
 }
