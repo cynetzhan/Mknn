@@ -56,6 +56,8 @@ class Testing extends CI_Controller {
                 $row[] = $field->usbn_mtk;
                 $row[] = $field->rapor_ipa;
                 $row[] = $field->usbn_ipa;
+                $row[] = $field->rapor_ips;
+                $row[] = $field->usbn_ips;
                 $row[] = $field->minat;
                 $row[] = $field->nilai_iq;
                 $row[] = $field->kelas;
@@ -100,6 +102,8 @@ class Testing extends CI_Controller {
             $usbn_mtk = $this->input->post('usbn_mtk', true);
             $rapor_ipa = $this->input->post('rapor_ipa', true);
             $usbn_ipa = $this->input->post('usbn_ipa', true);
+            $rapor_ips = $this->input->post('rapor_ips', true);
+            $usbn_ips = $this->input->post('usbn_ips', true);
             $minat = $this->input->post('minat', true);
             $nilai_iq = $this->input->post('nilai_iq', true);
             $kelas = $this->input->post('kelas', true);
@@ -115,13 +119,15 @@ class Testing extends CI_Controller {
             $this->form_validation->set_rules('usbn_mtk', 'usbn mtk', 'trim|required', ['required' => '%s Tidak boleh kosong']);
             $this->form_validation->set_rules('rapor_ipa', 'rapor ipa', 'trim|required', ['required' => '%s Tidak boleh kosong']);
             $this->form_validation->set_rules('usbn_ipa', 'usbn ipa', 'trim|required', ['required' => '%s Tidak boleh kosong']);
+            $this->form_validation->set_rules('rapor_ips', 'rapor ips', 'trim|required', ['required' => '%s Tidak boleh kosong']);
+            $this->form_validation->set_rules('usbn_ips', 'usbn ips', 'trim|required', ['required' => '%s Tidak boleh kosong']);
             $this->form_validation->set_rules('minat', 'minat', 'trim|required', ['required' => '%s Tidak boleh kosong']);
             $this->form_validation->set_rules('nilai_iq', 'nilai iq', 'trim|required', ['required' => '%s Tidak boleh kosong']);
             $this->form_validation->set_rules('kelas', 'kelas', 'trim|required', ['required' => '%s Tidak boleh kosong']);
 
 
             if ($this->form_validation->run() == TRUE) {
-                $this->testing->simpan($nis, $nama_siswa, $jenkel, $rapor_ind, $usbn_ind, $rapor_ing, $usbn_ing, $rapor_mtk, $usbn_mtk, $rapor_ipa, $usbn_ipa, $minat, $nilai_iq, $kelas);
+                $this->testing->simpan($nis, $nama_siswa, $jenkel, $rapor_ind, $usbn_ind, $rapor_ing, $usbn_ing, $rapor_mtk, $usbn_mtk, $rapor_ipa, $usbn_ipa, $rapor_ips, $usbn_ips, $minat, $nilai_iq, $kelas);
 
                 $msg = [
                     'sukses' => 'Data Testing Berhasil Disimpan'
@@ -162,6 +168,8 @@ class Testing extends CI_Controller {
                     'usbn_mtk' => $row['usbn_mtk'],
                     'rapor_ipa' => $row['rapor_ipa'],
                     'usbn_ipa' => $row['usbn_ipa'],
+                    'rapor_ips' => $row['rapor_ips'],
+                    'usbn_ips' => $row['usbn_ips'],
                     'minat' => $row['minat'],
                     'nilai_iq' => $row['nilai_iq'],
                     'kelas' => $row['kelas']
@@ -190,11 +198,13 @@ class Testing extends CI_Controller {
             $usbn_mtk = $this->input->post('usbn_mtk', true);
             $rapor_ipa = $this->input->post('rapor_ipa', true);
             $usbn_ipa = $this->input->post('usbn_ipa', true);
+            $rapor_ips = $this->input->post('rapor_ips', true);
+            $usbn_ips = $this->input->post('usbn_ips', true);
             $minat = $this->input->post('minat', true);
             $nilai_iq = $this->input->post('nilai_iq', true);
             $kelas = $this->input->post('kelas', true);
 
-            $this->testing->update($nis, $nama_siswa, $jenkel, $rapor_ind, $usbn_ind, $rapor_ing, $usbn_ing, $rapor_mtk, $usbn_mtk, $rapor_ipa, $usbn_ipa, $minat, $nilai_iq, $kelas);
+            $this->testing->update($nis, $nama_siswa, $jenkel, $rapor_ind, $usbn_ind, $rapor_ing, $usbn_ing, $rapor_mtk, $usbn_mtk, $rapor_ipa, $usbn_ipa, $rapor_ips, $usbn_ips, $minat, $nilai_iq, $kelas);
 
             $msg = [
                 'sukses' => 'data mahasiswa berhasil di-update'
@@ -246,9 +256,11 @@ class Testing extends CI_Controller {
                             'usbn_mtk' => $row->getCellAtIndex(9),
                             'rapor_ipa' => $row->getCellAtIndex(10),
                             'usbn_ipa' => $row->getCellAtIndex(11),
-                            'minat' => $row->getCellAtIndex(12),
-                            'nilai_iq' => $row->getCellAtIndex(13),
-                            'kelas' => $row->getCellAtIndex(14),
+                            'rapor_ips' => $row->getCellAtIndex(12),
+                            'usbn_ips' => $row->getCellAtIndex(13),
+                            'minat' => $row->getCellAtIndex(14),
+                            'nilai_iq' => $row->getCellAtIndex(15),
+                            'kelas' => $row->getCellAtIndex(16),
 
                         );
                         $this->testing->import_data($data);

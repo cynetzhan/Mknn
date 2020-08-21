@@ -93,6 +93,20 @@
                 </div>
 
                 <div class="form-group row">
+                    <label for="nobp" class="col-sm-2 col-form-label">Nilai Raport IPS</label>
+                    <div class="col-sm-4">
+                        <input type="text" name="rapor_ips" id="rapor_ips" class="form-control" maxlength="2">
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    <label for="nobp" class="col-sm-2 col-form-label">Nilai USBN IPS</label>
+                    <div class="col-sm-4">
+                        <input type="text" name="usbn_ips" id="usbn_ips" class="form-control" maxlength="2">
+                    </div>
+                </div>
+
+                <div class="form-group row">
                     <label for="nobp" class="col-sm-2 col-form-label">Minat</label>
                     <div class="col-sm-6">
                         <select name="minat" id="minat" class="form-control">

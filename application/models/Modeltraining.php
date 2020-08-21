@@ -2,7 +2,7 @@
 class Modeltraining extends CI_Model
 {
     var $table = 'training'; //nama tabel dari database
-    var $column_order = array(null,'nis','nama_siswa','jenkel','rapor_ind','usbn_ind','rapor_ing','usbn_ing','rapor_mtk','usbn_mtk','rapor_ipa','usbn_ipa','minat','nilai_iq',null); //Sesuaikan dengan field
+    var $column_order = array(null,'nis','nama_siswa','jenkel','rapor_ind','usbn_ind','rapor_ing','usbn_ing','rapor_mtk','usbn_mtk','rapor_ipa','usbn_ipa','rapor_ips','usbn_ips','minat','nilai_iq', 'kelas',null); //Sesuaikan dengan field
     var $column_search = array('nis','nama_siswa','jenkel','minat'); //field yang diizin untuk pencarian 
     var $order = array('nis' => 'asc'); // default order 
 
@@ -62,7 +62,7 @@ class Modeltraining extends CI_Model
         return $this->db->count_all_results();
     }
 
-    public function simpan($nis, $nama_siswa, $jenkel, $rapor_ind, $usbn_ind, $rapor_ing, $usbn_ing, $rapor_mtk, $usbn_mtk, $rapor_ipa, $usbn_ipa, $minat, $nilai_iq, $kelas)
+    public function simpan($nis, $nama_siswa, $jenkel, $rapor_ind, $usbn_ind, $rapor_ing, $usbn_ing, $rapor_mtk, $usbn_mtk, $rapor_ipa, $usbn_ipa, $rapor_ips, $usbn_ips, $minat, $nilai_iq, $kelas)
     {
         $simpan = [
             'nis' => $nis,
@@ -76,6 +76,8 @@ class Modeltraining extends CI_Model
             'usbn_mtk' => $usbn_mtk,
             'rapor_ipa' => $rapor_ipa,
             'usbn_ipa' => $usbn_ipa,
+            'rapor_ips' => $rapor_ips,
+            'usbn_ips' => $usbn_ips,
             'minat' => $minat,
             'nilai_iq' => $nilai_iq,
             'kelas' => $kelas
@@ -88,7 +90,7 @@ class Modeltraining extends CI_Model
         return $this->db->get_where('training', ['nis' => $nis]);
     }
 
-    public function update($nis, $nama_siswa, $jenkel, $rapor_ind, $usbn_ind, $rapor_ing, $usbn_ing, $rapor_mtk, $usbn_mtk, $rapor_ipa, $usbn_ipa, $minat, $nilai_iq, $kelas){
+    public function update($nis, $nama_siswa, $jenkel, $rapor_ind, $usbn_ind, $rapor_ing, $usbn_ing, $rapor_mtk, $usbn_mtk, $rapor_ipa, $usbn_ipa, $rapor_ips, $usbn_ips, $minat, $nilai_iq, $kelas){
 
         $simpan = [
             'nama_siswa' => $nama_siswa,
@@ -101,6 +103,8 @@ class Modeltraining extends CI_Model
             'usbn_mtk' => $usbn_mtk,
             'rapor_ipa' => $rapor_ipa,
             'usbn_ipa' => $usbn_ipa,
+            'rapor_ips' => $rapor_ips,
+            'usbn_ips' => $usbn_ips,
             'minat' => $minat,
             'nilai_iq' => $nilai_iq,
             'kelas' => $kelas

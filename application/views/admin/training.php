@@ -46,6 +46,8 @@
                             <th>USBN MTK</th>
                             <th>Rapor IPA</th>
                             <th>USBN IPA</th>
+                            <th>Rapor IPS</th>
+                            <th>USBN IPS</th>
                             <th>Minat</th>
                             <th>Nilai IQ</th>
                             <th>Kelas</th>
