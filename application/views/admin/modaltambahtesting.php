@@ -30,8 +30,8 @@
                     <div class="col-sm-6">
                         <select name="jenkel" id="jenkel" class="form-control">
                             <option value="">-Pilih-</option>
-                            <option value="laki-laki">Laki-Laki</option>
-                            <option value="perempuan">Perempuan</option>
+                            <option value="L">Laki-Laki</option>
+                            <option value="P">Perempuan</option>
                         </select>
                     </div>
                 </div>

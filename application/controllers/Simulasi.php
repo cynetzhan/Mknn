@@ -22,8 +22,8 @@ class Simulasi extends CI_Controller {
             'hasil' => $simul_result
         ];
         $parser = [
-            'list' => 'training',
-            'menu' => 'training',
+            'list' => 'mknn',
+            'menu' => 'mknn',
             'tittle' => 'SIPILJur - Simulasi MKNN',
             'isi' => $this->load->view('admin/simulasi', $content, true)
         ];

@@ -73,7 +73,7 @@
 
                             <!-- Logo -->
                             <div class="content-header-item">
-                                <a class="link-effect font-w700" href="index.html">
+                                <a class="link-effect font-w700" href="">
                                     <i class="si si-bar-chart text-primary"></i>
                                     <span class="font-size-xl text-dual-primary-dark">SIPIL</span><span class="font-size-xl text-primary">Jur</span>
                                 </a>
@@ -133,7 +133,7 @@
                             </li>
 
                             <li>
-                                <a href="<?= site_url('Mknn') ?>" class="<?php if ($menu == "mknn") { echo "active"; } ?>"><i class="si si-layers"></i><span class="sidebar-mini-hide">MKNN</span></a>
+                                <a href="<?= site_url('Simulasi') ?>" class="<?php if ($menu == "mknn") { echo "active"; } ?>"><i class="si si-layers"></i><span class="sidebar-mini-hide">MKNN</span></a>
                             </li>
 
                             <li>

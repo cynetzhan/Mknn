@@ -1,5 +1,8 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
+require_once APPPATH . 'third_party/Spout/Autoloader/autoload.php';
+
+use Box\Spout\Reader\Common\Creator\ReaderEntityFactory;
 
 class Testing extends CI_Controller {
 
@@ -56,7 +59,6 @@ class Testing extends CI_Controller {
                 $row[] = $field->minat;
                 $row[] = $field->nilai_iq;
                 $row[] = $field->kelas;
-                $row[] = $field->prediksi;
                 $row[] = $tomboledit . ' ' . $tombolhapus;
                 $data[] = $row;
             }
@@ -101,7 +103,6 @@ class Testing extends CI_Controller {
             $minat = $this->input->post('minat', true);
             $nilai_iq = $this->input->post('nilai_iq', true);
             $kelas = $this->input->post('kelas', true);
-            $prediksi = $this->input->post('prediksi', true);
 
             $this->form_validation->set_rules('nis', 'NIS', 'trim|required|is_unique[testing.nis]', ['required' => '%s Tidak boleh kosong', 'is_unique' => '%s sudah ada didalam database']);
             $this->form_validation->set_rules('nama_siswa', 'nama siswa', 'trim|required', ['required' => '%s Tidak boleh kosong']);
@@ -117,11 +118,10 @@ class Testing extends CI_Controller {
             $this->form_validation->set_rules('minat', 'minat', 'trim|required', ['required' => '%s Tidak boleh kosong']);
             $this->form_validation->set_rules('nilai_iq', 'nilai iq', 'trim|required', ['required' => '%s Tidak boleh kosong']);
             $this->form_validation->set_rules('kelas', 'kelas', 'trim|required', ['required' => '%s Tidak boleh kosong']);
-            $this->form_validation->set_rules('predikis', 'predikis', 'trim|required', ['required' => '%s Tidak boleh kosong']);
 
 
             if ($this->form_validation->run() == TRUE) {
-                $this->testing->simpan($nis, $nama_siswa, $jenkel, $rapor_ind, $usbn_ind, $rapor_ing, $usbn_ing, $rapor_mtk, $usbn_mtk, $rapor_ipa, $usbn_ipa, $minat, $nilai_iq, $kelas, $prediksi);
+                $this->testing->simpan($nis, $nama_siswa, $jenkel, $rapor_ind, $usbn_ind, $rapor_ing, $usbn_ing, $rapor_mtk, $usbn_mtk, $rapor_ipa, $usbn_ipa, $minat, $nilai_iq, $kelas);
 
                 $msg = [
                     'sukses' => 'Data Testing Berhasil Disimpan'
@@ -164,8 +164,7 @@ class Testing extends CI_Controller {
                     'usbn_ipa' => $row['usbn_ipa'],
                     'minat' => $row['minat'],
                     'nilai_iq' => $row['nilai_iq'],
-                    'kelas' => $row['kelas'],
-                    'prediksi' => $row['prediksi']
+                    'kelas' => $row['kelas']
                 ];
             }
             
@@ -194,9 +193,8 @@ class Testing extends CI_Controller {
             $minat = $this->input->post('minat', true);
             $nilai_iq = $this->input->post('nilai_iq', true);
             $kelas = $this->input->post('kelas', true);
-            $kelas = $this->input->post('prediksi', true);
 
-            $this->training->update($nis, $nama_siswa, $jenkel, $rapor_ind, $usbn_ind, $rapor_ing, $usbn_ing, $rapor_mtk, $usbn_mtk, $rapor_ipa, $usbn_ipa, $minat, $nilai_iq, $kelas, $prediksi);
+            $this->testing->update($nis, $nama_siswa, $jenkel, $rapor_ind, $usbn_ind, $rapor_ing, $usbn_ing, $rapor_mtk, $usbn_mtk, $rapor_ipa, $usbn_ipa, $minat, $nilai_iq, $kelas);
 
             $msg = [
                 'sukses' => 'data mahasiswa berhasil di-update'
@@ -210,7 +208,7 @@ class Testing extends CI_Controller {
         if ($this->input->is_ajax_request() == true) {
             $nis = $this->input->post('nis', true);
 
-            $hapus = $this->training->hapus($nis);
+            $hapus = $this->testing->hapus($nis);
 
             if ($hapus) {
                 $msg = [
@@ -221,6 +219,51 @@ class Testing extends CI_Controller {
         }
     }
 
+    public function uploaddata()
+    {
+        $config['upload_path'] = './uploads/';
+        $config['allowed_types'] = 'xlsx|xls';
+        $config['file_name'] = 'doc' . time();
+        $this->load->library('upload', $config);
+        if ($this->upload->do_upload('importexel')) {
+            $file = $this->upload->data();
+            $reader = ReaderEntityFactory::createXLSXReader();
+
+            $reader->open('uploads/' . $file['file_name']);
+            foreach ($reader->getSheetIterator() as $sheet) {
+                $numRow = 1;
+                foreach ($sheet->getRowIterator() as $row) {
+                    if ($numRow > 1) {
+                        $data = array(
+                            'nis' => $row->getCellAtIndex(1),
+                            'nama_siswa' => $row->getCellAtIndex(2),
+                            'jenkel' => $row->getCellAtIndex(3),
+                            'rapor_ind' => $row->getCellAtIndex(4),
+                            'usbn_ind' => $row->getCellAtIndex(5),
+                            'rapor_ing' => $row->getCellAtIndex(6),
+                            'usbn_ing' => $row->getCellAtIndex(7),
+                            'rapor_mtk' => $row->getCellAtIndex(8),
+                            'usbn_mtk' => $row->getCellAtIndex(9),
+                            'rapor_ipa' => $row->getCellAtIndex(10),
+                            'usbn_ipa' => $row->getCellAtIndex(11),
+                            'minat' => $row->getCellAtIndex(12),
+                            'nilai_iq' => $row->getCellAtIndex(13),
+                            'kelas' => $row->getCellAtIndex(14),
+
+                        );
+                        $this->testing->import_data($data);
+                    }
+                    $numRow++;
+                }
+                $reader->close();
+                unlink('uploads/' . $file['file_name']);
+                $this->session->set_flashdata('pesan', 'import Data Berhasil');
+                redirect('Testing');
+            }
+        } else {
+            echo "Error :" . $this->upload->display_errors();
+        };
+    }
 
 }
  

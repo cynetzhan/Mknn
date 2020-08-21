@@ -29,8 +29,8 @@
                     <label for="nobp" class="col-sm-2 col-form-label">Jenis Kelamin</label>
                     <div class="col-sm-6">
                         <select name="jenkel" id="jenkel" class="form-control">
-                            <option value="laki-laki" <?php if($jenkel == 'laki-laki') echo 'selected'; ?>>Laki-Laki</option>
-                            <option value="perempuan" <?php if($jenkel == 'perempuan') echo 'selected'; ?>>Perempuan</option>
+                            <option value="L" <?php if($jenkel == 'L') echo 'selected'; ?>>Laki-Laki</option>
+                            <option value="P" <?php if($jenkel == 'P') echo 'selected'; ?>>Perempuan</option>
                         </select>
                     </div>
                 </div>

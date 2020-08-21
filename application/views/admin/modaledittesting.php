@@ -29,8 +29,8 @@
                     <label for="nobp" class="col-sm-2 col-form-label">Jenis Kelamin</label>
                     <div class="col-sm-6">
                         <select name="jenkel" id="jenkel" class="form-control">
-                            <option value="laki-laki" <?php if($jenkel == 'laki-laki') echo 'selected'; ?>>Laki-Laki</option>
-                            <option value="perempuan" <?php if($jenkel == 'perempuan') echo 'selected'; ?>>Perempuan</option>
+                            <option value="L" <?php if($jenkel == 'L') echo 'selected'; ?>>Laki-Laki</option>
+                            <option value="P" <?php if($jenkel == 'P') echo 'selected'; ?>>Perempuan</option>
                         </select>
                     </div>
                 </div>
@@ -112,13 +112,6 @@
                     <label for="nobp" class="col-sm-2 col-form-label">Kelas</label>
                     <div class="col-sm-4">
                         <input type="text" name="kelas" id="kelas" class="form-control" value="<?= $kelas ?>">
-                    </div>
-                </div>
-
-                <div class="form-group row">
-                    <label for="nobp" class="col-sm-2 col-form-label">Prediksi</label>
-                    <div class="col-sm-4">
-                        <input type="text" name="prediksi" id="prediksi" class="form-control" disabled value="<?= $prediksi ?>">
                     </div>
                 </div>
                 

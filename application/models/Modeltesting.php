@@ -2,7 +2,7 @@
 class Modeltesting extends CI_Model
 {
     var $table = 'testing'; //nama tabel dari database
-    var $column_order = array(null,'nis','nama_siswa','jenkel','rapor_ind','usbn_ind','rapor_ing','usbn_ing','rapor_mtk','usbn_mtk','rapor_ipa','usbn_ipa','minat','nilai_iq', 'kelas', 'prediksi',null); //Sesuaikan dengan field
+    var $column_order = array(null,'nis','nama_siswa','jenkel','rapor_ind','usbn_ind','rapor_ing','usbn_ing','rapor_mtk','usbn_mtk','rapor_ipa','usbn_ipa','minat','nilai_iq', 'kelas',null); //Sesuaikan dengan field
     var $column_search = array('nis','nama_siswa','jenkel','minat'); //field yang diizin untuk pencarian 
     var $order = array('nis' => 'asc'); // default order 
 
@@ -62,7 +62,7 @@ class Modeltesting extends CI_Model
         return $this->db->count_all_results();
     }
 
-    public function simpan($nis, $nama_siswa, $jenkel, $rapor_ind, $usbn_ind, $rapor_ing, $usbn_ing, $rapor_mtk, $usbn_mtk, $rapor_ipa, $usbn_ipa, $minat, $nilai_iq, $kelas, $prediksi)
+    public function simpan($nis, $nama_siswa, $jenkel, $rapor_ind, $usbn_ind, $rapor_ing, $usbn_ing, $rapor_mtk, $usbn_mtk, $rapor_ipa, $usbn_ipa, $minat, $nilai_iq, $kelas)
     {
         $simpan = [
             'nis' => $nis,
@@ -78,8 +78,7 @@ class Modeltesting extends CI_Model
             'usbn_ipa' => $usbn_ipa,
             'minat' => $minat,
             'nilai_iq' => $nilai_iq,
-            'kelas' => $kelas,
-            'prediksi' => $prediksi
+            'kelas' => $kelas
         ];
         $this->db->insert('testing', $simpan);
     }
@@ -89,7 +88,7 @@ class Modeltesting extends CI_Model
         return $this->db->get_where('testing', ['nis' => $nis]);
     }
 
-    public function update($nis, $nama_siswa, $jenkel, $rapor_ind, $usbn_ind, $rapor_ing, $usbn_ing, $rapor_mtk, $usbn_mtk, $rapor_ipa, $usbn_ipa, $minat, $nilai_iq, $kelas, $prediksi){
+    public function update($nis, $nama_siswa, $jenkel, $rapor_ind, $usbn_ind, $rapor_ing, $usbn_ing, $rapor_mtk, $usbn_mtk, $rapor_ipa, $usbn_ipa, $minat, $nilai_iq, $kelas){
 
         $simpan = [
             'nama_siswa' => $nama_siswa,
@@ -104,8 +103,7 @@ class Modeltesting extends CI_Model
             'usbn_ipa' => $usbn_ipa,
             'minat' => $minat,
             'nilai_iq' => $nilai_iq,
-            'kelas' => $kelas,
-            'prediksi' => $prediksi
+            'kelas' => $kelas
         ];
 
         $this->db->where('nis', $nis);
@@ -115,6 +113,14 @@ class Modeltesting extends CI_Model
     public function hapus($nis)
     {
         return $this->db->delete('testing', ['nis' => $nis]);
+    }
+
+    public function import_data($data)
+    {
+        $jumlah = count($data);
+        if ($jumlah > 0) {
+            $this->db->replace('testing', $data);
+        }
     }
 
     public function get(){
