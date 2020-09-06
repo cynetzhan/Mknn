@@ -39,7 +39,7 @@ class MKNN{
         $this->validity = $validity;
     }
  
-    function predict($test_samples, $test_labels){
+    function predict($test_samples, $test_labels = []){
         // $sample_count = count($this->samples);
         // $first_only = true;
         $result = [];
@@ -54,8 +54,8 @@ class MKNN{
             $this->predicted_labels[$iy] = $sliced_majority[0];
             $result[$iy] = [
                 // "id"=>$iy,
-                "kelas"=>$test_labels[$iy],
-                "prediksi"=>$this->predicted_labels[$iy]
+                "kelas"=> isset($test_labels[$iy]) ? $test_labels[$iy] : '',
+                "prediksi"=> $this->predicted_labels[$iy]
             ];
             // if($first_only){
             //     $sendJson["total_test"] = count($test_samples);
