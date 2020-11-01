@@ -32,6 +32,8 @@
         <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Muli:300,400,400i,600,700">
         <link rel="stylesheet" id="css-main" href="<?= base_url() ?>assets/css/codebase.min.css">
 
+        
+
         <!-- END Stylesheets -->
         <script src="<?= base_url() ?>assets/js/codebase.core.min.js"></script>
 
@@ -114,6 +116,7 @@
                     <!-- END Side User -->
 
                     <!-- Side Navigation -->
+                    <?php if ($this->session->userdata('nama')) { ?>
                     <div class="content-side content-side-full">
                         <ul class="nav-main">
                             <li>
@@ -142,6 +145,23 @@
 
                         </ul>
                     </div>
+                    <?php } else { ?>
+                        <div class="content-side content-side-full">
+                    <ul class="nav-main">
+
+                        <li>
+                            <a class="active" href=""><i class="si si-cup"></i><span
+                                    class="sidebar-mini-hide">Dashboard</span></a>
+                        </li>
+
+                        <li>
+                            <a class="" href="be_pages_dashboard.html"><i class="si si-bar-chart"></i><span
+                                    class="sidebar-mini-hide">Keputusan</span></a>
+                        </li>
+
+                    </ul>
+                </div>
+                    <?php } ?>
                     <!-- END Side Navigation -->
                 </div>
                 <!-- Sidebar Content -->
@@ -229,26 +249,45 @@
 
                     <!-- Right Section -->
                     <div class="content-header-section">
+                        <?php if ($this->session->userdata('nama')) { ?>
                         <!-- User Dropdown -->
                         <div class="btn-group" role="group">
                             <button type="button" class="btn btn-rounded btn-dual-secondary" id="page-header-user-dropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 <i class="fa fa-user d-sm-none"></i>
-                                <span class="d-none d-sm-inline-block">J. Smith</span>
+                                <span class="d-none d-sm-inline-block"><?= $this->session->userdata('username') ?></span>
                                 <i class="fa fa-angle-down ml-5"></i>
                             </button>
                             <div class="dropdown-menu dropdown-menu-right min-width-200" aria-labelledby="page-header-user-dropdown">
-                                <h5 class="h6 text-center py-10 mb-5 border-b text-uppercase">User</h5>
+                                <h5 class="h6 text-center py-10 mb-5 border-b text-uppercase"><?= $this->session->userdata('nama') ?></h5>
                                 <a class="dropdown-item" href="be_pages_generic_profile.html">
                                     <i class="si si-user mr-5"></i> Profile
                                 </a>
 
                                 <div class="dropdown-divider"></div>
-                                <a class="dropdown-item" href="op_auth_signin.html">
+                                <a class="dropdown-item" href="<?= base_url('auth/logout'); ?>">
                                     <i class="si si-logout mr-5"></i> Sign Out
                                 </a>
                             </div>
                         </div>
                         <!-- END User Dropdown -->
+                        <?php } else { ?>
+                        <div class="btn-group" role="group">
+                            <button type="button" class="btn btn-rounded btn-dual-secondary" id="page-header-user-dropdown"
+                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <i class="fa fa-user d-sm-none"></i>
+                                <span class="d-none d-sm-inline-block">User</span>
+                                <i class="fa fa-angle-down ml-5"></i>
+                            </button>
+                            <div class="dropdown-menu dropdown-menu-right min-width-200"
+                                aria-labelledby="page-header-user-dropdown">
+                                <!-- Link kan ke auth-->
+                                <div class="dropdown-divider"></div>
+                                <a class="dropdown-item" href="<?= base_url('auth') ?>">
+                                    <i class="si si-logout mr-5"></i> Login
+                                </a>
+                            </div>
+                        </div>
+                        <?php } ?>
                     </div>
                     <!-- END Right Section -->
                 </div>
@@ -290,7 +329,97 @@
         </div>
         <!-- END Page Container -->
         
-        
+         <!-- Onboarding Modal functionality is initialized in js/pages/be_pages_dashboard.min.js which was auto compiled from _es6/pages/be_pages_dashboard.js -->
+
+    <div class="modal fade" id="modal-onboarding" tabindex="-1" role="dialog" aria-labelledby="modal-onboarding"
+        aria-hidden="true">
+        <div class="modal-dialog modal-lg modal-dialog-centered modal-dialog-popout" role="document">
+            <div class="modal-content rounded">
+                <div class="block block-rounded block-transparent mb-0 bg-pattern"
+                    style="background-image: url('<?= base_url() ?>assets/media/various/bg-pattern-inverse.png');">
+                    <div class="block-header justify-content-end">
+                        <div class="block-options">
+                            <a class="font-w600 text-danger" href="#" data-dismiss="modal" aria-label="Close">
+                                Skip Intro
+                            </a>
+                        </div>
+                    </div>
+                    <div class="block-content block-content-full">
+                        <div class="js-slider slick-dotted-inner" data-dots="true" data-arrows="false"
+                            data-infinite="false">
+                            <div class="pb-50">
+                                <div class="row justify-content-center text-center">
+                                    <div class="col-md-10 col-lg-8">
+                                        <i class="si si-bar-chart fa-4x text-primary"></i>
+                                        <h3 class="font-size-h2 font-w300 mt-20">Selamat Datang di SIPILJur</h3>
+                                        <p class="text-muted">
+                                            Sistem informasi yang dapat membantu peserta didik baru untuk menentukan jurusan pilihannya. <br>
+                                            Sistem ini berguna untuk peserta didik yang kebingungan untuk menentukan jurusan baginya.
+                                            
+                                        </p>
+                                        <button type="button"
+                                            class="btn btn-sm btn-hero btn-noborder btn-primary mb-10 mx-5"
+                                            onclick="jQuery('.js-slider').slick('slickGoTo', 1);">
+                                            Let's Go !!!<i class="fa fa-arrow-right ml-5"></i>
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="slick-slide pb-50">
+                                <div class="row justify-content-center text-center">
+                                    <div class="col-md-10 col-lg-8">
+                                    <i class="si si-note fa-4x text-primary"></i>
+
+                                    <h3 class="font-size-h2 font-w300 mb-5 ">Cara Penggunaan</h3>
+                                        <p class="text-muted">
+                                            Peserta didik harus memiliki nilai terdiri dari nilai <strong>Raport, USBN, dan nilai IQ </strong>
+                                        </p>
+                                        <p>ada pun nilai mata pelajaran yang di butuhkan antara lain <strong>(Bahasa Indonesia, Bahasa Inggris, Matematika, dan IPA)<strong></p>
+                                        <div class="dropdown-divider"></div>
+                                        <p class="text-muted">
+                                            Peserta didik diharuskan untuk mengisi berupa form yang ada pada menu <strong> " Keputusan "</strong> pada menu samping. 
+                                        </p>
+                                        
+                                        <div class="text-center">
+                                            <button type="button"
+                                                class="btn btn-sm btn-hero btn-noborder btn-primary mb-10 mx-5"
+                                                onclick="jQuery('.js-slider').slick('slickGoTo', 2);">
+                                                Next <i class="fa fa-arrow-right ml-5"></i>
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="slick-slide pb-50">
+                                <div class="row justify-content-center text-center">
+                                    <div class="col-md-10 col-lg-8">
+                                    <i class="si si-note fa-4x text-primary"></i>
+
+             
+                                        <p class="text-muted mt-5">
+                                            Setelah Peserta didik mengisi nilai pada form yang telah di sediakan, untuk memproses Keputusannya tinggal klik <strong>" Proses Keputusan " </strong>. Setelah itu tunggu hasilnya keluar.
+                                        </p>
+                                        <div class="dropdown-divider"></div>
+
+                                       
+                                        <h2 class="font-size-h2 font-w300 mt-20">Selamat Mencoba</h2>
+                                        <button type="button"
+                                            class="btn btn-sm btn-hero btn-noborder btn-primary mb-10 mx-5"
+                                            data-dismiss="modal" aria-label="Close">
+                                            Get Started <i class="fa fa-check ml-5"></i>
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- END Onboarding Modal -->
+
+
         <script src="<?= base_url() ?>assets/js/codebase.app.min.js"></script>
     </body>
 </html>

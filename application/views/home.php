@@ -241,7 +241,7 @@
                             aria-labelledby="page-header-user-dropdown">
                               <!-- Link kan ke auth-->
                             <div class="dropdown-divider"></div>
-                            <a class="dropdown-item" href="op_auth_signin.html">
+                            <a class="dropdown-item" href="<?= base_url('auth') ?>">
                                 <i class="si si-logout mr-5"></i> Login
                             </a>
                         </div>

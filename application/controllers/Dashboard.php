@@ -7,6 +7,7 @@ class Dashboard extends CI_Controller {
     {
         parent::__construct();
     }
+    
     public function index()
     {
         $parser = [

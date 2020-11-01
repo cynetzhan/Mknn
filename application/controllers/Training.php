@@ -9,6 +9,12 @@ class Training extends CI_Controller {
     public function __construct()
     {
         parent::__construct();
+
+        if (!$this->session->userdata('nama')) {
+            $this->session->set_flashdata('message', '<div class="alert alert-danger" role="alert"><i class="fas fa-exclamation-triangle"></i> Anda Harus Login Terlebih dahulu</div>');
+            redirect('auth');
+        }
+        
         $this->load->library('form_validation');
         $this->load->model('Modeltraining', 'training');
     }
