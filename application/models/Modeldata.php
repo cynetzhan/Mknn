@@ -34,14 +34,14 @@ class Modeldata extends CI_Model
                 return ($data == "L") ? 1 : 2;
             },
             'nilai'=> function ($data) {
-                if($data >= 93){
-                    return 4;
-                } else if($data >= 84){
-                    return 3;
-                } else if($data >= 75){
-                    return 2;
-                } else {
+                if($data >= 91){
                     return 1;
+                } else if($data >= 82){
+                    return 2;
+                } else if($data >= 73){
+                    return 3;
+                } else {
+                    return 4;
                 }
             },
             'minat'=> function ($data) {
