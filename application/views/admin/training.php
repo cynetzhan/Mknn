@@ -22,8 +22,9 @@
             <div class="block-header block-header-default">
                 <h3 class="block-title">Seluruh Data Training</h3>
             </div>
-            <?= $this->session->flashdata('pesan'); ?>
+            
             <div class="block-content block-content-full">
+            <?= $this->session->flashdata('pesan'); ?>
             <button type="button" class="btn btn-success mr-5 mb-5 left" id="tomboltambah">
                     <i class="fa fa-plus mr-5"></i>Add User
                 </button>
@@ -37,7 +38,6 @@
                             <th>No</th>
                             <th>NIS</th>
                             <th>Nama</th>
-                            <th>Jenis Kelamin</th>
                             <th>Rapor IND</th>
                             <th>USBN IND</th>
                             <th>Rapor ING</th>

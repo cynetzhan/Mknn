@@ -35,7 +35,7 @@ class Auth extends CI_Controller {
                 //echo var_dump($isi); die;
                 redirect('dashboard');
             } else {
-                $this->session->set_flashdata('message', '<div class="alert alert-danger" role="alert"><i class="icon fa fa-ban"></i> Password salah!</div>');
+                $this->session->set_flashdata('message', '<div class="alert alert-danger" role="alert"><i class="icon fa fa-danger"></i> Password salah!</div>');
                 $this->load->view('admin/login');
             }
         } else {

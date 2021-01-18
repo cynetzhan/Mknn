@@ -53,7 +53,6 @@ class Training extends CI_Controller {
                 $row[] = $no;
                 $row[] = $field->nis;
                 $row[] = $field->nama_siswa;
-                $row[] = $field->jenkel;
                 $row[] = $field->rapor_ind;
                 $row[] = $field->usbn_ind;
                 $row[] = $field->rapor_ing;
@@ -99,7 +98,6 @@ class Training extends CI_Controller {
         if ($this->input->is_ajax_request() == true) {
             $nis = $this->input->post('nis', true);
             $nama_siswa = $this->input->post('nama_siswa', true);
-            $jenkel = $this->input->post('jenkel', true);
             $rapor_ind = $this->input->post('rapor_ind', true);
             $usbn_ind = $this->input->post('usbn_ind', true);
             $rapor_ing = $this->input->post('rapor_ing', true);
@@ -116,7 +114,6 @@ class Training extends CI_Controller {
 
             $this->form_validation->set_rules('nis', 'NIS', 'trim|required|is_unique[training.nis]', ['required' => '%s Tidak boleh kosong', 'is_unique' => '%s sudah ada didalam database']);
             $this->form_validation->set_rules('nama_siswa', 'nama siswa', 'trim|required', ['required' => '%s Tidak boleh kosong']);
-            $this->form_validation->set_rules('jenkel', 'jenis kelamin', 'trim|required', ['required' => '%s Tidak boleh kosong']);
             $this->form_validation->set_rules('rapor_ind', 'rapor ind', 'trim|required', ['required' => '%s Tidak boleh kosong']);
             $this->form_validation->set_rules('usbn_ind', 'usbn ind', 'trim|required', ['required' => '%s Tidak boleh kosong']);
             $this->form_validation->set_rules('rapor_ing', 'rapor ing', 'trim|required', ['required' => '%s Tidak boleh kosong']);
@@ -133,7 +130,7 @@ class Training extends CI_Controller {
 
 
             if ($this->form_validation->run() == TRUE) {
-                $this->training->simpan($nis, $nama_siswa, $jenkel, $rapor_ind, $usbn_ind, $rapor_ing, $usbn_ing, $rapor_mtk, $usbn_mtk, $rapor_ipa, $usbn_ipa, $rapor_ips, $usbn_ips, $minat, $nilai_iq, $kelas);
+                $this->training->simpan($nis, $nama_siswa, $rapor_ind, $usbn_ind, $rapor_ing, $usbn_ing, $rapor_mtk, $usbn_mtk, $rapor_ipa, $usbn_ipa, $rapor_ips, $usbn_ips, $minat, $nilai_iq, $kelas);
 
                 $msg = [
                     'sukses' => 'Data Training Berhasil Disimpan'
@@ -165,7 +162,6 @@ class Training extends CI_Controller {
                 $data = [
                     'nis' => $nis,
                     'nama_siswa' => $row['nama_siswa'],
-                    'jenkel' => $row['jenkel'],
                     'rapor_ind' => $row['rapor_ind'],
                     'usbn_ind' => $row['usbn_ind'],
                     'rapor_ing' => $row['rapor_ing'],
@@ -195,7 +191,6 @@ class Training extends CI_Controller {
         if ($this->input->is_ajax_request() == true) {
             $nis = $this->input->post('nis', true);
             $nama_siswa = $this->input->post('nama_siswa', true);
-            $jenkel = $this->input->post('jenkel', true);
             $rapor_ind = $this->input->post('rapor_ind', true);
             $usbn_ind = $this->input->post('usbn_ind', true);
             $rapor_ing = $this->input->post('rapor_ing', true);
@@ -210,7 +205,7 @@ class Training extends CI_Controller {
             $nilai_iq = $this->input->post('nilai_iq', true);
             $kelas = $this->input->post('kelas', true);
 
-            $this->training->update($nis, $nama_siswa, $jenkel, $rapor_ind, $usbn_ind, $rapor_ing, $usbn_ing, $rapor_mtk, $usbn_mtk, $rapor_ipa, $usbn_ipa, $rapor_ips, $usbn_ips, $minat, $nilai_iq, $kelas);
+            $this->training->update($nis, $nama_siswa, $rapor_ind, $usbn_ind, $rapor_ing, $usbn_ing, $rapor_mtk, $usbn_mtk, $rapor_ipa, $usbn_ipa, $rapor_ips, $usbn_ips, $minat, $nilai_iq, $kelas);
 
             $msg = [
                 'sukses' => 'data mahasiswa berhasil di-update'
@@ -253,20 +248,19 @@ class Training extends CI_Controller {
                         $data = array(
                             'nis' => $row->getCellAtIndex(1),
                             'nama_siswa' => $row->getCellAtIndex(2),
-                            'jenkel' => $row->getCellAtIndex(3),
-                            'rapor_ind' => $row->getCellAtIndex(4),
-                            'usbn_ind' => $row->getCellAtIndex(5),
-                            'rapor_ing' => $row->getCellAtIndex(6),
-                            'usbn_ing' => $row->getCellAtIndex(7),
-                            'rapor_mtk' => $row->getCellAtIndex(8),
-                            'usbn_mtk' => $row->getCellAtIndex(9),
-                            'rapor_ipa' => $row->getCellAtIndex(10),
-                            'usbn_ipa' => $row->getCellAtIndex(11),
-                            'rapor_ips' => $row->getCellAtIndex(12),
-                            'usbn_ips' => $row->getCellAtIndex(13),
-                            'minat' => $row->getCellAtIndex(14),
-                            'nilai_iq' => $row->getCellAtIndex(15),
-                            'kelas' => $row->getCellAtIndex(16),
+                            'rapor_ind' => $row->getCellAtIndex(3),
+                            'usbn_ind' => $row->getCellAtIndex(4),
+                            'rapor_ing' => $row->getCellAtIndex(5),
+                            'usbn_ing' => $row->getCellAtIndex(6),
+                            'rapor_mtk' => $row->getCellAtIndex(7),
+                            'usbn_mtk' => $row->getCellAtIndex(8),
+                            'rapor_ipa' => $row->getCellAtIndex(9),
+                            'usbn_ipa' => $row->getCellAtIndex(10),
+                            'rapor_ips' => $row->getCellAtIndex(11),
+                            'usbn_ips' => $row->getCellAtIndex(12),
+                            'minat' => $row->getCellAtIndex(13),
+                            'nilai_iq' => $row->getCellAtIndex(14),
+                            'kelas' => $row->getCellAtIndex(15),
 
                         );
                         $this->training->import_data($data);
@@ -275,7 +269,7 @@ class Training extends CI_Controller {
                 }
                 $reader->close();
                 unlink('uploads/' . $file['file_name']);
-                $this->session->set_flashdata('pesan', 'import Data Berhasil');
+                $this->session->set_flashdata('pesan', '<div class="alert alert-success" role="alert"><i class="fas fa-check"></i> import Data Berhasil</div>');
                 redirect('Training');
             }
         } else {

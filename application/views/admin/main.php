@@ -96,25 +96,23 @@
 
                         <!-- Visible only in normal mode -->
                         <div class="sidebar-mini-hidden-b text-center">
-                            <a class="img-link" href="be_pages_generic_profile.html">
+                            <a class="img-link" href="">
                                 <img class="img-avatar" src="<?= base_url() ?>assets/media/avatars/avatar15.jpg" alt="">
                             </a>
                             <ul class="list-inline mt-10">
                                 <li class="list-inline-item">
-                                    <a class="link-effect text-dual-primary-dark font-size-xs font-w600 text-uppercase" href="be_pages_generic_profile.html">J. Smith</a>
-                                </li>
-                               
-                                <li class="list-inline-item">
-                                    <a class="link-effect text-dual-primary-dark" href="op_auth_signin.html">
-                                        <i class="si si-logout"></i>
-                                    </a>
+                                <?php if ($this->session->userdata('nama')) { ?>
+                                    <a class="link-effect text-dual-primary-dark font-size-xs font-w600 text-uppercase" href=""><?= $this->session->userdata('nama') ?></a>
+                                <?php } else { ?>
+                                    <a class="link-effect text-dual-primary-dark font-size-xs font-w600 text-uppercase" href="">User</a>
+                                <?php }?>
                                 </li>
                             </ul>
                         </div>
                         <!-- END Visible only in normal mode -->
                     </div>
                     <!-- END Side User -->
-
+                    
                     <!-- Side Navigation -->
                     <?php if ($this->session->userdata('nama')) { ?>
                     <div class="content-side content-side-full">
@@ -150,12 +148,12 @@
                     <ul class="nav-main">
 
                         <li>
-                            <a class="active" href=""><i class="si si-cup"></i><span
+                            <a class="<?php if ($menu == "dashboard") { echo "active"; } ?>" href="<?= site_url('Dashboard') ?>"><i class="si si-cup"></i><span
                                     class="sidebar-mini-hide">Dashboard</span></a>
                         </li>
 
                         <li>
-                            <a class="" href="be_pages_dashboard.html"><i class="si si-bar-chart"></i><span
+                            <a class="<?php if ($menu == "spk") { echo "active"; } ?>" href="<?= site_url('Spk') ?>"><i class="si si-bar-chart"></i><span
                                     class="sidebar-mini-hide">Keputusan</span></a>
                         </li>
 
@@ -259,7 +257,7 @@
                             </button>
                             <div class="dropdown-menu dropdown-menu-right min-width-200" aria-labelledby="page-header-user-dropdown">
                                 <h5 class="h6 text-center py-10 mb-5 border-b text-uppercase"><?= $this->session->userdata('nama') ?></h5>
-                                <a class="dropdown-item" href="be_pages_generic_profile.html">
+                                <a class="dropdown-item" href="<?= base_url('profil'); ?>">
                                     <i class="si si-user mr-5"></i> Profile
                                 </a>
 

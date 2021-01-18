@@ -25,7 +25,7 @@
                     </div>
                 </div>
 
-                <div class="form-group row">
+                <!-- <div class="form-group row">
                     <label for="nobp" class="col-sm-2 col-form-label">Jenis Kelamin</label>
                     <div class="col-sm-6">
                         <select name="jenkel" id="jenkel" class="form-control">
@@ -34,7 +34,7 @@
                             <option value="P">Perempuan</option>
                         </select>
                     </div>
-                </div>
+                </div> -->
 
                 <div class="form-group row">
                     <label for="nobp" class="col-sm-2 col-form-label">Nilai Raport IND</label>

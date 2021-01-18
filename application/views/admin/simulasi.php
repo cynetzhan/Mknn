@@ -72,7 +72,6 @@
                             <th>No</th>
                             <th>NIS</th>
                             <th>Nama</th>
-                            <th>Jenis Kelamin</th>
                             <th>Rapor IND</th>
                             <th>USBN IND</th>
                             <th>Rapor ING</th>
@@ -98,7 +97,6 @@
                                 <td><?= $row['id_test'] ?></td>
                                 <td><?= $row['nis'] ?></td>
                                 <td><?= $row['nama_siswa'] ?></td>
-                                <td><?= $row['jenkel'] ?></td>
                                 <td><?= $row['rapor_ind'] ?></td>
                                 <td><?= $row['usbn_ind'] ?></td>
                                 <td><?= $row['rapor_ing'] ?></td>

@@ -2,8 +2,8 @@
 class Modeltesting extends CI_Model
 {
     var $table = 'testing'; //nama tabel dari database
-    var $column_order = array(null,'nis','nama_siswa','jenkel','rapor_ind','usbn_ind','rapor_ing','usbn_ing','rapor_mtk','usbn_mtk','rapor_ipa','usbn_ipa','rapor_ips','usbn_ips','minat','nilai_iq', 'kelas',null); //Sesuaikan dengan field
-    var $column_search = array('nis','nama_siswa','jenkel','minat'); //field yang diizin untuk pencarian 
+    var $column_order = array(null,'nis','nama_siswa','rapor_ind','usbn_ind','rapor_ing','usbn_ing','rapor_mtk','usbn_mtk','rapor_ipa','usbn_ipa','rapor_ips','usbn_ips','minat','nilai_iq', 'kelas',null); //Sesuaikan dengan field
+    var $column_search = array('nis','nama_siswa','minat'); //field yang diizin untuk pencarian 
     var $order = array('nis' => 'asc'); // default order 
 
     private function _get_datatables_query()
@@ -62,12 +62,11 @@ class Modeltesting extends CI_Model
         return $this->db->count_all_results();
     }
 
-    public function simpan($nis, $nama_siswa, $jenkel, $rapor_ind, $usbn_ind, $rapor_ing, $usbn_ing, $rapor_mtk, $usbn_mtk, $rapor_ipa, $usbn_ipa, $rapor_ips, $usbn_ips, $minat, $nilai_iq, $kelas)
+    public function simpan($nis, $nama_siswa, $rapor_ind, $usbn_ind, $rapor_ing, $usbn_ing, $rapor_mtk, $usbn_mtk, $rapor_ipa, $usbn_ipa, $rapor_ips, $usbn_ips, $minat, $nilai_iq, $kelas)
     {
         $simpan = [
             'nis' => $nis,
             'nama_siswa' => $nama_siswa,
-            'jenkel' => $jenkel,
             'rapor_ind' => $rapor_ind,
             'usbn_ind' => $usbn_ind,
             'rapor_ing' => $rapor_ing,
@@ -90,11 +89,10 @@ class Modeltesting extends CI_Model
         return $this->db->get_where('testing', ['nis' => $nis]);
     }
 
-    public function update($nis, $nama_siswa, $jenkel, $rapor_ind, $usbn_ind, $rapor_ing, $usbn_ing, $rapor_mtk, $usbn_mtk, $rapor_ipa, $usbn_ipa, $rapor_ips, $usbn_ips, $minat, $nilai_iq, $kelas){
+    public function update($nis, $nama_siswa, $rapor_ind, $usbn_ind, $rapor_ing, $usbn_ing, $rapor_mtk, $usbn_mtk, $rapor_ipa, $usbn_ipa, $rapor_ips, $usbn_ips, $minat, $nilai_iq, $kelas){
 
         $simpan = [
             'nama_siswa' => $nama_siswa,
-            'jenkel' => $jenkel,
             'rapor_ind' => $rapor_ind,
             'usbn_ind' => $usbn_ind,
             'rapor_ing' => $rapor_ing,
@@ -135,6 +133,16 @@ class Modeltesting extends CI_Model
         $jumlah = count($data);
         if ($jumlah > 0) {
             $this->db->replace('normalisasi', $data);
+        }
+    }
+
+    public function tampil_sum()
+    {
+        $query = $this->db->get('testing');
+        if ($query->num_rows() > 0) {
+            return $query->num_rows();
+        } else {
+            return 0;
         }
     }
     
