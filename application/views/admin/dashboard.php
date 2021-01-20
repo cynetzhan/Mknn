@@ -11,7 +11,7 @@
                         <div class="float-right mt-15 d-none d-sm-block">
                             <i class="si si-users fa-2x text-primary-light"></i>
                         </div>
-                        <div class="font-size-h3 font-w600 text-primary"><?php echo $total_asset; ?></div>
+                        <div class="font-size-h3 font-w600 text-primary"><?php echo $totaltraining; ?></div>
                         <div class="font-size-sm font-w600 text-uppercase text-muted">Data Siswa Training</div>
                     </div>
                 </a>
@@ -22,7 +22,7 @@
                         <div class="float-right mt-15 d-none d-sm-block">
                             <i class="si si-users fa-2x text-earth-light"></i>
                         </div>
-                        <div class="font-size-h3 font-w600 text-earth"><?php echo $test; ?></div>
+                        <div class="font-size-h3 font-w600 text-earth"><?php echo $totaltesting; ?></div>
                         <div class="font-size-sm font-w600 text-uppercase text-muted">Data Siswa Testing</div>
                     </div>
                 </a>

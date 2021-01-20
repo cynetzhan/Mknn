@@ -139,11 +139,14 @@ class Modeltesting extends CI_Model
     public function tampil_sum()
     {
         $query = $this->db->get('testing');
-        if ($query->num_rows() > 0) {
-            return $query->num_rows();
-        } else {
-            return 0;
-        }
+		return $query->num_rows();
+
+        // $query = $this->db->get('testing');
+        // if ($query->num_rows() > 0) {
+        //     return $query->num_rows();
+        // } else {
+        //     return 0;
+        // }
     }
     
 }
