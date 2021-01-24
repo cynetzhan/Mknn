@@ -28,6 +28,11 @@
                 </a>
             </div>
         </div>
+        <div class="row invisible" data-toggle="appear">
+            <div class="col-12">
+                <canvas id="dashchart"></canvas>
+            </div>
+        </div>
     </div>
     <!-- END Page Content -->
 
