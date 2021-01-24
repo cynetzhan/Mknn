@@ -145,4 +145,15 @@ class Modeltraining extends CI_Model
             return 0;
         }
     }
+
+    public function group_get(){
+        $this->db->select("kelas, count(kelas) as total");
+        $this->db->group_by("kelas");
+        $query = $this->db->get('training');
+        if ($query->num_rows() > 0) {
+            return $query->result_array();
+        } else {
+            return [["kelas"=>"MIPA", "total"=>0], ["kelas"=>"IPS", "total"=>0]];
+        }
+    }
 }

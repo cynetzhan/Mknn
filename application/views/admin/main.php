@@ -419,5 +419,6 @@
 
 
         <script src="<?= base_url() ?>assets/js/codebase.app.min.js"></script>
+        {script}
     </body>
 </html>
