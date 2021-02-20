@@ -132,9 +132,13 @@
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-alt-secondary" data-dismiss="modal">Close</button>
-                <button type="submit" class="btn btn-alt-success">
+                <button type="submit" name="actname" value="calculate" class="btn btn-alt-success">
                     <i class="fa fa-check"></i> Mulai Klasifikasi
                 </button>
+                <?php if(isset($result)){ ?>
+                <button type="submit" class="btn btn-alt-secondary" name="actname" value="savepdf">Simpan ke PDF</button>
+                <button type="submit" class="btn btn-alt-secondary" name="actname" value="savelog">Simpan ke Riwayat</button>
+                <?php } ?>
             </div>
         <?= form_close() ?>
     </div>
